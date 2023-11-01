@@ -20,6 +20,7 @@ verificar_instalar_apt "curl"
 verificar_instalar_apt "tilix"
 verificar_instalar_apt "docker.io"
 verificar_instalar_apt "docker-compose"
+verificar_instalar_apt "linphone-desktop"
 # Añadir usuario al grupo docker
 sudo usermod -aG docker $USER
 echo "Usuario agregado al grupo 'docker'."
