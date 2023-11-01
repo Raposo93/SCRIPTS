@@ -14,19 +14,12 @@ verificar_instalar_apt() {
     fi
 }
 
-#Actualizar
 sudo apt update && sudo apt upgrade -y
-
-# Verificar e instalar Git
 verificar_instalar_apt "git"
-
-# Verificar e instalar cURL
 verificar_instalar_apt "curl"
-
-# Verificar e instalar Docker y Docker Compose
+verificar_instalar_apt "tilix"
 verificar_instalar_apt "docker.io"
 verificar_instalar_apt "docker-compose"
-
 # Añadir usuario al grupo docker
 sudo usermod -aG docker $USER
 echo "Usuario agregado al grupo 'docker'."
@@ -41,11 +34,9 @@ else
     echo "SDKMAN! ya está instalado."
 fi
 
-# Instalar Java 17.0.8-tem con SDKMAN!
 sdk install java 17.0.8-tem
 instalaciones_realizadas+=("Java 17.0.8-tem")
 
-# Instalar Maven 3.9.0 con SDKMAN!
 sdk install maven 3.9.0
 instalaciones_realizadas+=("Maven 3.9.0")
 
@@ -67,10 +58,9 @@ curl -L -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-late
     echo "Firefox descargado e instalado en /opt/"
     instalaciones_realizadas+=("Firefox")
 
-# Mostrar resumen de las instalaciones realizadas
 echo -e "\nResumen de instalaciones realizadas:"
 if [ ${#instalaciones_realizadas[@]} -ne 0 ]; then
-    echo "Herramientas y aplicaciones instaladas/desinstaladas:"
+    echo "Herramientas y aplicaciones instaladas:"
     for herramienta in "${instalaciones_realizadas[@]}"; do
         echo "  $herramienta"
     done
