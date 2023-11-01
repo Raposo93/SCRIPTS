@@ -14,6 +14,9 @@ verificar_instalar_apt() {
     fi
 }
 
+#Actualizar
+sudo apt update && sudo apt upgrade -y
+
 # Verificar e instalar Git
 verificar_instalar_apt "git"
 
