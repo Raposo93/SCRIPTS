@@ -33,6 +33,7 @@ if [ ! -d "$HOME/.sdkman" ]; then
 else
     echo "SDKMAN! ya está instalado."
 fi
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 sdk install java 17.0.8-tem
 instalaciones_realizadas+=("Java 17.0.8-tem")
@@ -55,7 +56,9 @@ fi
 curl -L -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
     sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
     rm ~/Firefox.tar.bz2
+    sudo ln -s /opt/firefox/firefox /usr/bin
     echo "Firefox descargado e instalado en /opt/"
+
     instalaciones_realizadas+=("Firefox")
 
 echo -e "\nResumen de instalaciones realizadas:"
