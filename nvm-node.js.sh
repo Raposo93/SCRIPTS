@@ -6,7 +6,7 @@ instalaciones_realizadas=()
 # Instalar NVM y Node.js
 if ! command -v nvm &>/dev/null; then
     # Instalación de NVM
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | zsh
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
     source ~/.zshrc
     echo "NVM instalado."
     instalaciones_realizadas+=("NVM")
