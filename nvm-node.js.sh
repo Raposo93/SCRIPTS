@@ -32,3 +32,4 @@ if [ ${#instalaciones_realizadas[@]} -ne 0 ]; then
         echo "  $herramienta"
     done
 fi
+exec zsh
