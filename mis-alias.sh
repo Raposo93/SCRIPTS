@@ -32,7 +32,7 @@ if [ -f ~/.zshrc ]; then
     if grep -q "alias permitir=" ~/.zshrc; then
         sed -i 's/^alias permitir=.*$/alias permitir="chmod +x";/' ~/.zshrc
         echo "'permitir' alias updated in ~/.zshrc."
-        alias_actualizados+=("permitir = chmod +x")
+        alias_actualizados+=("permitir = sudo chmod +x")
     else
         echo 'alias permitir="chmod +x";' >> ~/.zshrc
         echo "'permitir' alias added to ~/.zshrc."
