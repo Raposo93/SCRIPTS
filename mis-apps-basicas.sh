@@ -61,8 +61,9 @@ else
 fi
 
 # Instalar ultimo firefox sin snap ni apt
-curl -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+curl -L -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
     sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
+    rm ~/Firefox.tar.bz2
     echo "Firefox descargado e instalado en /opt/"
     instalaciones_realizadas+=("Firefox")
 
@@ -74,3 +75,6 @@ if [ ${#instalaciones_realizadas[@]} -ne 0 ]; then
         echo "  $herramienta"
     done
 fi
+
+# Reload the console to apply the changes immediately
+exec zsh
