@@ -53,14 +53,25 @@ else
     echo "Firefox no está instalado."
 fi
 
-# Instalar ultimo firefox sin snap ni apt
-curl -L -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+# Obtener la última versión de Firefox disponible en el sitio web de Mozilla
+latest_version=$(curl -sI "https://download.mozilla.org/?product=firefox-latest&os=linux64" | grep -oP '(?<=releases/).*(?=/linux-x86_64)')
+echo "latest_version $latest_version"
+
+# Obtener la versión actualmente instalada
+current_version=$(firefox --version | awk '{print $3}')
+echo "current_version $current_version"
+
+if [[ "$latest_version" == "$current_version" ]]; then
+    echo "Ya tienes la última versión de Firefox ($latest_version) instalada."
+else
+    # Descargar e instalar la última versión de Firefox
+    curl -L -o ~/Firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
     sudo tar xjf ~/Firefox.tar.bz2 -C /opt/
     rm ~/Firefox.tar.bz2
     sudo ln -s /opt/firefox/firefox /usr/bin
-    echo "Firefox descargado e instalado en /opt/"
-
-    instalaciones_realizadas+=("Firefox")
+    echo "Firefox $latest_version descargado e instalado en /opt/"
+    instalaciones_realizadas+=("Firefox $latest_version")
+fi
 
 echo -e "\nResumen de instalaciones realizadas:"
 if [ ${#instalaciones_realizadas[@]} -ne 0 ]; then
