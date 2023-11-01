@@ -30,6 +30,17 @@ if command -v zsh &>/dev/null; then
     fi
 fi
 
+# Descargar y configurar el tema Powerlevel10k si Oh My Zsh está instalado
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+        echo "Tema Powerlevel10k descargado y listo para ser configurado."
+        omz theme set powerlevel10k/powerlevel10k
+    else
+        echo "El tema Powerlevel10k ya está descargado y configurado."
+    fi
+fi
+
 # Mostrar resumen de las instalaciones realizadas
 echo -e "\nResumen de instalaciones realizadas:"
 if [ ${#instalaciones_realizadas[@]} -ne 0 ]; then
